@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O City e Guardiola</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a0f;
+            --text: #e4e4e7;
+            --text-dim: #a1a1aa;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background 0.8s ease;
+        }
+
+        /* SFONDI DINAMICI PER OGNI PERSONA */
+        body.theme-login { background: radial-gradient(circle at 20% 50%, #6366f125 0%, #0a0a0f 60%); }
+        body.theme-main { background: radial-gradient(circle at 50% 50%, #8b5cf125 0%, #0a0a0f 60%); }
+        body.theme-comella { background: radial-gradient(circle at 50% 50%, #f59e0b25 0%, #0a0a0f 60%); }
+        body.theme-peppe { background: radial-gradient(circle at 50% 50%, #ef444425 0%, #0a0a0f 60%); }
+        body.theme-cirillo { background: radial-gradient(circle at 50% 50%, #10b98125 0%, #0a0a0f 60%); }
+        body.theme-christian { background: radial-gradient(circle at 50% 50%, #06b6d425 0%, #0a0a0f 60%); }
+        body.theme-vicienz { background: radial-gradient(circle at 50% 50%, #ec489925 0%, #0a0a0f 60%); }
+        body.theme-diego { background: radial-gradient(circle at 50% 50%, #84cc1625 0%, #0a0a0f 60%); }
+        body.theme-costanzo { background: radial-gradient(circle at 50% 50%, #a855f725 0%, #0a0a0f 60%); }
+        body.theme-marione { background: radial-gradient(circle at 50% 50%, #3b82f625 0%, #0a0a0f 60%); }
+
+      .container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.6s ease;
+        }
+
+      .card {
+            background: rgba(21, 21, 32, 0.85);
+            border: 1px solid #27272a;
+            border-radius: 24px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            backdrop-filter: blur(16px);
+            animation: slideUp 0.5s ease;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+      .subtitle {
+            color: var(--text-dim);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            background: #09090b;
+            border: 1px solid #27272a;
+            color: var(--text);
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px #6366f120;
+        }
+
+        button,.name-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf1);
+            border: none;
+            color: white;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+        }
+
+        button:hover,.name-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px #6366f140;
+        }
+
+      .name-btn {
+            background: #1e1e2e;
+            border: 1px solid #27272a;
+            text-align: left;
+            font-weight: 500;
+        }
+
+      .name-btn:hover {
+            background: #27273a;
+            border-color: #6366f1;
+        }
+
+      .back-btn {
+            background: #1e1e2e;
+            border: 1px solid #27272a;
+            margin-top: 24px;
+        }
+
+      .error {
+            color: #f87171;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            animation: shake 0.4s ease;
+        }
+
+      .result-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 24px;
+            animation: zoomIn 0.5s ease;
+        }
+
+      .result-text {
+            line-height: 1.9;
+            color: var(--text-dim);
+            font-size: 16px;
+            text-align: center;
+        }
+
+      .hidden { display: none; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+    </style>
+</head>
+<body class="theme-login">
+    <!-- LOGIN SCREEN -->
+    <div id="login" class="container">
+        <div class="card">
+            <h1>O City e Guardiola</h1>
+            <p class="subtitle">Area riservata agli 8 eletti</p>
+            <input type="password" id="password" placeholder="Parola chiave..." autocomplete="off">
+            <button onclick="checkLogin()">Entra</button>
+            <p id="loginError" class="error hidden"></p>
+        </div>
+    </div>
+
+    <!-- MAIN QUESTION SCREEN -->
+    <div id="main" class="container hidden">
+        <div class="card">
+            <h1>Sei entrato nel sito creato da Vicienz</h1>
+            <p class="subtitle">Rispondi alla domanda: chi è il più gay del gruppo?</p>
+            <button class="name-btn" onclick="showResult('peppe')">Peppe zara</button>
+            <button class="name-btn" onclick="showResult('comella')">Comella</button>
+            <button class="name-btn" onclick="showResult('christian')">Christian</button>
+            <button class="name-btn" onclick="showResult('diego')">Diego</button>
+            <button class="name-btn" onclick="showResult('cirillo')">Cirillo</button>
+            <button class="name-btn" onclick="showResult('costanzo')">Costanzo</button>
+            <button class="name-btn" onclick="showResult('marione')">Marione</button>
+            <button class="name-btn" onclick="showResult('vicienz')">Vicienz (Hammon)</button>
+        </div>
+    </div>
+
+    <!-- RESULT SCREENS -->
+    <div id="result" class="container hidden">
+        <div class="card">
+            <h2 id="resultName" class="result-name"></h2>
+            <p id="resultText" class="result-text"></p>
+            <button class="back-btn" onclick="goBack()">Torna indietro</button>
+        </div>
+    </div>
+
+    <script>
+        const PASSWORD = "O city e guardiol";
+
+        const results = {
+            comella: {
+                name: "Comella",
+                text: "Risposta corretta. Egli è noto per le sue stupidaggini, il city di guardiola lo apprezza per questo e tiene viva l'atmosfera, ottima scelta.",
+                theme: "theme-comella"
+            },
+            peppe: {
+                name: "Peppe zara",
+                text: "Probabilmente se ti ritrovi qua si nu scem came, ma comunque ti posso dire risposta giusta al 50%. Ricordato per odiare tutti ed essere nervoso col mondo proprio come il creatore di questo sito. Grazie per la scelta.",
+                theme: "theme-peppe"
+            },
+            cirillo: {
+                name: "Cirillo",
+                text: "Risposta corretta al 0%, niente da dire: Per cliccare questo nome il primo gay sei tu, nu tucca o compaesan",
+                theme: "theme-cirillo"
+            },
+            christian: {
+                name: "Christian",
+                text: "Ottima scelta, risposta corretta al 70%, capisco perché avresti potuto votare lui. Conosciuto per l'esagerazione, i suoi rumori e comportamenti, peccato per il suo paese d'origine: Frignano (CE).",
+                theme: "theme-christian"
+            },
+            vicienz: {
+                name: "Vicienz (Hammon)",
+                text: "O mocc a patt tu si gay no ij, nient spiegazion, focess e iesctenn a ca dint",
+                theme: "theme-vicienz"
+            },
+            diego: {
+                name: "Diego",
+                text: "Diego è gay ma è anche conosciuto per essere colui che segna più gol, non voterei lui al tuo posto. Diego è noto per i suoi versi da animale istinto nella preistoria, bella risposta ma allo stesso tempo brutta.",
+                theme: "theme-diego"
+            },
+            costanzo: {
+                name: "Costanzo",
+                text: "Risposta originale, Costanzo è conosciuto per essere spietato, se uno fa una botta in classe lui non ride e non dice nulla, aspetta solo il momento per farla 4 volte più forte in silenzio. Urla, esagera, ottima risposta. Percentuale di correttezza: 75%",
+                theme: "theme-costanzo"
+            },
+            marione: {
+                name: "Marione",
+                text: "Ottimo, 100%. Non ci sono spiegazioni, noto per la sua altezza, odia fare le partite anche se il calcio è lo sport che ci appassiona, ma lo si vuole comunque bene, adesso esci da questo sito più inutile di te, ciao!",
+                theme: "theme-marione"
+            }
+        };
+
+        function checkLogin() {
+            const input = document.getElementById('password').value;
+            const error = document.getElementById('loginError');
+
+            if (input === PASSWORD) {
+                document.body.className = 'theme-main';
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('main').classList.remove('hidden');
+                error.classList.add('hidden');
+            } else {
+                error.textContent = 'Password sbagliata fratè, riprova';
+                error.classList.remove('hidden');
+                document.getElementById('password').value = '';
+            }
+        }
+
+        function showResult(name) {
+            const data = results[name];
+            document.body.className = data.theme;
+            document.getElementById('main').classList.add('hidden');
+            document.getElementById('result').classList.remove('hidden');
+            document.getElementById('resultName').textContent = data.name;
+            document.getElementById('resultText').textContent = data.text;
+        }
+
+        function goBack() {
+            document.body.className = 'theme-main';
+            document.getElementById('result').classList.add('hidden');
+            document.getElementById('main').classList.remove('hidden');
+        }
+
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkLogin();
+        });
+    </script>
+</body>
+</html>
